@@ -1,16 +1,20 @@
 <h1>BookYourTable</h1>
 
-<form action="/complete-booking">
+<form id="book-form" action="/get-list-of-bookings">
 
   <p>Datepciker: <input type="text" id="datepicker" name="date"></p>
-
-  <p>People: <input type="number" id="people" name="people"></p>
+  <p id="query-response"></p>
 
   Time: <select id="time" name="time">
-    <option value="20.00">20.00</option>
+    <option value="20.00">20.00</option> 
     <option value="22.00">22.00</option>
   </select>
 
-  <button id="proceed-button" type="submit">Proceed</button>
+  <p>People: <input type="number" id="people" name="people"></p>
+
+
+  <button type="submit">Proceed</button>
 
 <form>
+
+
