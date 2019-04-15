@@ -67,7 +67,11 @@ function checkMaxPeopleInput() {
     .catch(err => {
       console.log(err);
     });
+
+    
 }
+
+
 
 
 $('#people').click(() => {
