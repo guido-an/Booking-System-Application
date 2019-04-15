@@ -9,4 +9,11 @@ a {
   background-color: #29f274 !important;
   color: #ffffff !important; }
 
+#time-select {
+  border: 1px solid #f7f7f7;
+  cursor: pointer; }
+
+.display {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */

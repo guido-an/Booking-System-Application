@@ -8,6 +8,25 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
+/* get list of BOOKINGS per DATE */
+router.get("/get-list-of-bookings", (req, res) => {
+  Booking.find({ date: req.query.date })
+  .then(bookings => {
+    res.send(bookings);
+    console.log(bookings)
+  });
+});
+
+ /* get list of BOOKINGS per DATE and TIME */
+router.get("/list-of-bookings-before-proceeding", (req, res) => {
+  Booking.find({ date: req.query.date, time: req.query.time } )
+  .then(bookings => {
+    res.send(bookings);
+  });
+});
+
+
+
 /* get COMPLETE BOOKING*/
 router.get("/complete-booking", (req, res) => {
   let userBookingWhen = {
@@ -18,6 +37,7 @@ router.get("/complete-booking", (req, res) => {
   };
   res.render("complete-booking", userBookingWhen); // and pass the object to the page where the booking is finalized
 });
+
 
 /* post COMPLETE BOOKING */
 router.post("/complete-booking", (req, res) => {
@@ -60,7 +80,7 @@ router.post("/complete-booking", (req, res) => {
     })
 
     .then(() => {
-      res.redirect("/"); // redirect to home page
+      res.redirect("/");      // redirect to home page
     })
     .catch(error => {
       console.log(error);
@@ -92,16 +112,6 @@ router.post("/complete-booking", (req, res) => {
 // //       console.log(err);
 // //     });
 // // });
-
-/* get list of BOOKINGS  */
-router.get("/get-list-of-bookings", (req, res) => {
-  Booking.find({ date: req.query.date })
-  .then(bookings => {
-    res.send(bookings);
-    console.log(bookings)
-  });
-});
-
 
 /* get all the DATES  */
 // router.get("/get-list-of-dates", (req, res) => {

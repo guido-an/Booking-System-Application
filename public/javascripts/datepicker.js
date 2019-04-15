@@ -14,7 +14,10 @@ $(function() {
     dateFormat: "dd MM yy",
     beforeShowDay: unavailable,
     yearRange: '2019:2019',
-    onSelect: () => countSeatsPerDate(),
+    onSelect:() => {
+      countSeats_1Slot()
+      // alert("hello")
+  },
     showAnim: "toggle"
   });
 });
