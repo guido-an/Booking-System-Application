@@ -1,6 +1,6 @@
 const _1Slot = "20.00";
 const _2Slot = "22.00";
-const maxSeats = 11;
+const maxSeats = 10;
 
 // call this function on date selected (datepicker.js)
 function countSeats_1Slot() {
@@ -30,14 +30,9 @@ function countSeats_1Slot() {
     });
 }
 
+
+
 $("#first-slot-li").click(() => {
-  maxPeopleInput = parseInt($("#first-slot-li p").html()); // take the seats left number
-
-  $("#people").attr({
-    max: maxPeopleInput, // and use it as max number for people input
-    min: 1
-  });
-
   $("#time-select span").html(_1Slot); // change span text 
   $("#time").attr("value", _1Slot); // change hidden input value (in order to be passed to the form)
 });
@@ -49,36 +44,41 @@ $("#second-slot-li").click(() => {
 
 
 
-function checkMaxPeopleInput() {
+function changeMaxPeopleInput() {
   var date = $("#datepicker").val();
   var time = $("#time").val();
-
   var seatsBooked = 0
- axios
+  
+  axios
     .get("/list-of-bookings-before-proceeding?date=" + date + "&time=" + time) // query per date and time selected
     .then(bookings => {
+      
      bookings.data.forEach(booking => {
        seatsBooked += booking.people
     })
     console.log(seatsBooked)
-    return seatsBooked 
+    var seatsLeft = maxSeats - seatsBooked
+    
+     $("#people").attr({
+          max: seatsLeft, // use seats left for people input
+          min: 1
+        });
+        $('#people').val("")   // reset people input to prevent bigger number to be displayed and booked  
+        
+    
     })
-
     .catch(err => {
       console.log(err);
     });
-
-    
 }
 
 
 
 
 $('#people').click(() => {
- 
-  checkMaxPeopleInput()
-  
+  changeMaxPeopleInput()
 })
+
 
 
 
