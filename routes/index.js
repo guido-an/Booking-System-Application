@@ -3,12 +3,16 @@ const router = express.Router();
 const Booking = require("../models/Booking.js");
 const nodemailer = require("nodemailer");
 
+
+const { check } = require('express-validator/check')
+
+
 /* get HOME */
 router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-/* get list of BOOKINGS per DATE */
+/* get list of BOOKINGS per DATE API */
 router.get("/get-list-of-bookings", (req, res) => {
   Booking.find({ date: req.query.date })
   .then(bookings => {
@@ -17,7 +21,7 @@ router.get("/get-list-of-bookings", (req, res) => {
   });
 });
 
- /* get list of BOOKINGS per DATE and TIME */
+ /* get list of BOOKINGS per DATE and TIME  API */
 router.get("/list-of-bookings-before-proceeding", (req, res) => {
   Booking.find({ date: req.query.date, time: req.query.time } )
   .then(bookings => {
@@ -54,6 +58,10 @@ router.post("/complete-booking", (req, res) => {
     message
   } = req.body;
 
+  if (date === "") {
+    return res.send('date is empy')
+  } 
+
   let transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
@@ -87,38 +95,5 @@ router.post("/complete-booking", (req, res) => {
     });
 });
 
-// /* get list of BOOKINGS  */
-// // router.get("/get-list-of-bookings", (req, res) => {
-// //   Booking.find({ date: req.query.date }) // query the database based on the day selected ("datepicker input" index.hbs)
-
-// //     .then(listOfBookingsByDate => {
-// //       function checkBookingPerDate() {
-// //         let sum = 0;
-// //         listOfBookingsByDate.forEach(booking => {
-// //           sum += booking.people; // total number of seats already reserved for this date
-// //         });
-// //         if (sum < 5) {
-// //           console.log("you can book");
-
-// //         } else {
-// //           console.log("you can't boook");
-// //         }
-// //       }
-// //       checkBookingPerDate(listOfBookingsByDate);
-
-// //       res.redirect("complete-booking");
-// //     })
-// //     .catch(err => {
-// //       console.log(err);
-// //     });
-// // });
-
-/* get all the DATES  */
-// router.get("/get-list-of-dates", (req, res) => {
-//   Booking.find()
-//   .then(dates => {
-//     res.send(dates);
-//   });
-// });
 
 module.exports = router;
