@@ -16,7 +16,7 @@ $(function() {
     yearRange: '2019:2019',
     onSelect:() => {
       countSeats_1Slot()
-      // alert("hello")
+      countSeats_2Slot()
   },
     showAnim: "toggle"
   });
