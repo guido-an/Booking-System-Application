@@ -58,11 +58,6 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
 
-// test
-
-
-
-
       
 
 app.set('views', path.join(__dirname, 'views'));
