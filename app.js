@@ -74,14 +74,9 @@ app.all('/admin/*', function(req, res, next) { // then you can use your middlewa
   if (req.session.currentUser) {
     next(); // allow the next route to run
   } else {
-  
-    // require the user to log in
-    res.redirect("/auth/login"); 
+    res.redirect("/auth/login");  // require the user to log in
   }
 })
-
-
-
 
 
 

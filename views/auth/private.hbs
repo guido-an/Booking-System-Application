@@ -42,7 +42,7 @@
 
 {{#each bookings}}
 
- <p>{{firstName}} {{lastName}} {{people}} people {{date}}</p> 
+ <p>{{firstName}} {{lastName}} {{people}} people {{date}} {{time}}</p> 
 
  <form action="/admin/{{id}}/delete" method="POST">
     <button type="submit">Delete this booking</button>

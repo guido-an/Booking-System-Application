@@ -9,6 +9,7 @@ function unavailable(date) {
     return [false, "", "Unavailable"];
   }
 }
+/** FRONTEND */
 $(function() {
   $("#datepicker").datepicker({
     dateFormat: "dd MM yy",

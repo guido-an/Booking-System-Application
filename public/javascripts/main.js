@@ -13,9 +13,42 @@ function setMaxSeats() {
     });
 }
 
+function set_1Slot() {
+  axios
+    .get("/admin/config") 
+    .then(config => {
+      console.log(config.data[0]._1Slot)
+    
+     _1Slot = config.data[0]._1Slot
+     $("#first-slot-li span").html(_1Slot);
+    
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
 
-const _1Slot = "20.00";
-const _2Slot = "22.00";
+
+function set_2Slot() {
+  axios
+    .get("/admin/config") 
+    .then(config => {
+      console.log(config.data[0]._2Slot)
+    
+     _2Slot = config.data[0]._2Slot
+     $("#second-slot-li span").html(_2Slot);
+    
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+
+
+
+let _1Slot
+let _2Slot
 let maxSeats
 
 // call this function on date selected (datepicker.js)
@@ -45,6 +78,7 @@ function countSeats_1Slot() {
       console.log(err);
     });
 }
+
 
 
 function countSeats_2Slot() {
