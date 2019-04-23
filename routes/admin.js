@@ -1,114 +1,41 @@
 const express = require("express");
 const router = express.Router();
 
-const bcrypt = require("bcrypt");
-const User = require("../models/User");
+const Booking = require("../models/Booking");
+const Config = require("../models/Config");
 
 
 
-/**** SIGNUP ****/
+/** FILTER bookings */
+router.get('/filter-bookings', (req, res) => {
+  Booking.find({ date: req.query.date, time: req.query.time })
+  .then((filteredBookings) => {
+    res.render('auth/private', {filteredBookings:filteredBookings})
+    console.log(filteredBookings)
+  })
+})
 
-/* GET signup page */
-router.get("/signup", (req, res, next) => {
-  res.render("signup");
-});
-
-
-/* POST signup page */
-router.post("/signup", (req, res) => {
-  const theUsername = req.body.username;
-  const thePassword = req.body.password;
-
-  if (theUsername === "" || thePassword === "") {
-    res.render("signup", {
-      errorMessage: "Please enter both, username and password to sign up."
-    });
-    return;
-  }
-
-  User.findOne({ username: theUsername }).then(user => {
-      console.log(user)
-    if (user !== null) {
-      res.render("signup", {
-        errorMessage: "The username already exists!"
-      });
-      return;
-    }
-
-    bcrypt
-      .hash(thePassword, 10)
-      .then(hash => {
-        return User.create({
-          username: theUsername,
-          password: hash
-        });
-      })
-      .then(user => {
-        res.send("user " + theUsername + " created ");
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  });
-});
-
-
-/**** LOGIN ****/
-
-/* GET LOGIN page */
-router.get("/login", (req, res, next) => {
-  res.render("login");
-});
-
-/* POST LOGIN page */
-router.post('/login', (req, res) => {
-  let currentUser;
-  User.findOne({username: req.body.username})
-    .then(user => {
-      if (!user) {
-        res.render("login", {
-          errorMessage: "The username doesn't exist."
-        });
-        return;
-      }
-      currentUser = user
-      return bcrypt.compare(req.body.password, user.password)
+/* DELETE bookings */
+router.post('/:id/delete', (req, res) => {
+  Booking.findByIdAndRemove(req.params.id)
+    .then(() => {
+      res.redirect('/auth/private')
+      console.log()
     })
-    .then(passwordCorrect => {
-      if(passwordCorrect) {
-        req.session.currentUser = currentUser
-        res.redirect("private")
-      } else {
-        res.render("login", {
-          errorMessage: "Incorrect password"
-        });
-      }
+    .catch((error) => {
+      console.log(error);
     })
+});
+
+/* SETTING page */
+router.get('/settings', (req, res) => {
+  res.render('admin/settings')
 })
 
 
-/** PROTECTED PAGE */
-router.use('/private', (req, res, next) => {
-  if (req.session.currentUser) { // <== if there's user in the session (user is logged in) go to the next step 
-    next(); 
-  } else {                      
-    res.redirect("login");         
-  }                            
-});                          
-router.get("/private", (req, res, next) => {    
-  res.render("private");
-});     
-
-
-/**LOGOUT */
-router.get("/logout", (req, res, next) => {
-  req.session.destroy((err) => {
-    res.redirect("login");
-  });
-});
-
-
-
+router.post('/config', (req, res) => {
+  
+})
 
 
 module.exports = router;

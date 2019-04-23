@@ -7,7 +7,7 @@ function countSeats_1Slot() {
   // pick the datepicker input value
   var date = $("#datepicker").val();
   axios
-    .get("/get-list-of-bookings?date=" + date) // and pass it to the axios route (the backend is querying for the date)
+    .get("/get-list-of-bookings?date=" + date ) // and pass it to the axios route (the backend is querying for the date)
     .then(bookings => {
       let _1SeatsBooked = 0;
       $("#first-slot-li p").html(maxSeats + " seats left"); // if no bookings, start displaying max seats
@@ -79,7 +79,7 @@ function changeMaxPeopleInput() {
   var seatsBooked = 0
   
   axios
-    .get("/list-of-bookings-before-proceeding?date=" + date + "&time=" + time) // query per date and time selected
+    .get("/list-of-bookings-per-date-and-time?date=" + date + "&time=" + time) // query per date and time selected
     .then(bookings => {
       
      bookings.data.forEach(booking => {
@@ -107,6 +107,8 @@ function changeMaxPeopleInput() {
 $('#people').click(() => {
   changeMaxPeopleInput()
 })
+
+
 
 
 

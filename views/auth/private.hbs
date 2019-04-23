@@ -1,0 +1,55 @@
+<h1>ADMIN PAGE</h1>
+
+
+<a href="/auth/logout">Logout</a>
+<a href="/admin/settings">Settings</a>
+
+
+  
+
+
+{{!-- <h2>Last Booking</h2> 
+{{#each bookings}}
+    {{#if @first}}
+      <p>{{firstName}} {{lastName}}: {{date}} for {{people}} people</p>
+      <p>Email: {{email}} Phone: {{phone}}</p>
+    {{/if}}
+  {{/each}}
+<br> --}}
+<h2> BOOKINGS</h2>
+<a href="/auth/private">All bookings</a>
+
+
+  <form action="/admin/filter-bookings" action="GET">
+  
+  <p>Date filter: <input type="text" id="datepicker-admin" name="date" value={{filteredBookings.date}}></p>
+
+
+  Select time slot <select id="time-admin" name="time">
+    <option value="20.00">20.00</option>
+    <option value="22.00">22.00</option>
+  </select>
+
+  <button type="submit">Filter</button>
+  </form><br><br>
+
+  {{#each filteredBookings}}
+
+ <p>{{firstName}} {{lastName}} {{people}} people</p>
+ 
+{{/each}}
+
+
+{{#each bookings}}
+
+ <p>{{firstName}} {{lastName}} {{people}} people {{date}}</p> 
+
+ <form action="/admin/{{id}}/delete" method="POST">
+    <button type="submit">Delete this booking</button>
+  </form>
+
+{{/each}}
+
+
+
+

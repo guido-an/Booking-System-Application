@@ -4,7 +4,7 @@ const Booking = require("../models/Booking.js");
 const nodemailer = require("nodemailer");
 
 
-const { check } = require('express-validator/check')
+var flash = require('connect-flash');
 
 
 /* get HOME */
@@ -14,7 +14,7 @@ router.get("/", (req, res, next) => {
 
 /* get list of BOOKINGS per DATE API */
 router.get("/get-list-of-bookings", (req, res) => {
-  Booking.find({ date: req.query.date })
+  Booking.find({ date: req.query.date }, { date: 1, time: 1, people: 1 } )
   .then(bookings => {
     res.send(bookings);
     console.log(bookings)
@@ -22,13 +22,12 @@ router.get("/get-list-of-bookings", (req, res) => {
 });
 
  /* get list of BOOKINGS per DATE and TIME  API */
-router.get("/list-of-bookings-before-proceeding", (req, res) => {
-  Booking.find({ date: req.query.date, time: req.query.time } )
+router.get("/list-of-bookings-per-date-and-time", (req, res) => {
+  Booking.find({ date: req.query.date, time: req.query.time }, { date: 1, time: 1, people: 1 })
   .then(bookings => {
     res.send(bookings);
   });
 });
-
 
 
 /* get COMPLETE BOOKING*/
@@ -58,10 +57,8 @@ router.post("/complete-booking", (req, res) => {
     message
   } = req.body;
 
-  if (date === "") {
-    return res.send('date is empy')
-  } 
 
+ 
   let transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
