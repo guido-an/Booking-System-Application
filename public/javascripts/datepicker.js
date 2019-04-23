@@ -15,6 +15,7 @@ $(function() {
     beforeShowDay: unavailable,
     yearRange: '2019:2019',
     onSelect:() => {
+      setMaxSeats() 
       countSeats_1Slot()
       countSeats_2Slot()
   },

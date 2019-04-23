@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Booking = require("../models/Booking.js");
+const Config = require("../models/Config");
 const nodemailer = require("nodemailer");
 
 
@@ -91,6 +92,18 @@ router.post("/complete-booking", (req, res) => {
       console.log(error);
     });
 });
+
+
+/* GET config */   // used with axios for frontend form 
+router.get('/config', (req, res) => {
+  Config.find()
+  .then((config) => {
+     res.send(config)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+})
 
 
 module.exports = router;

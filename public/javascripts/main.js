@@ -1,6 +1,22 @@
+function setMaxSeats() {
+  axios
+    .get("/admin/config") 
+    .then(config => {
+      console.log(config)
+    //  console.log(config.data[0].maxSeats)
+     maxSeats = config.data[0].maxSeats
+     console.log(maxSeats)
+    
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+
 const _1Slot = "20.00";
 const _2Slot = "22.00";
-const maxSeats = 10;
+let maxSeats
 
 // call this function on date selected (datepicker.js)
 function countSeats_1Slot() {

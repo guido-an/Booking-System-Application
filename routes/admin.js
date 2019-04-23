@@ -29,13 +29,54 @@ router.post('/:id/delete', (req, res) => {
 
 /* SETTING page */
 router.get('/settings', (req, res) => {
-  res.render('admin/settings')
+  Config.find()
+  .then((config) => {
+     console.log(config)
+     res.render('admin/settings', { config: config } )
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 })
 
 
-router.post('/config', (req, res) => {
+
+
+/* UPDATE settings */ 
+
+
+
+
+
+
+
+
+
+// router.get('/config', (req, res) => {
+//   Config.find()
+//   .then((config) => {
+//     console.log(config)
+//     res.render('admin/settings', { config: config } )
+    
+//   })
+//   .catch((err) => {
+//     console.log(err)
+//   })
+// })
+
+
+// router.post('/config', (req, res) => {
+//   Config.create(req.body)
   
-})
+//   .then(() => {
+//     let {
+//       maxSeats,
+//       _1Slot,
+//       _2Slot
+//     } = req.body
+//     res.redirect('/admin/settings')
+//   })
+// })
 
 
 module.exports = router;
