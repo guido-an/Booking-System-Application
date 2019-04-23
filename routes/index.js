@@ -94,16 +94,7 @@ router.post("/complete-booking", (req, res) => {
 });
 
 
-/* GET config */   // used with axios for frontend form 
-router.get('/config', (req, res) => {
-  Config.find()
-  .then((config) => {
-     res.send(config)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
-})
+
 
 
 module.exports = router;

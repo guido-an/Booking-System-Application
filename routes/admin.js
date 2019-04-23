@@ -27,6 +27,17 @@ router.post('/:id/delete', (req, res) => {
     })
 });
 
+/* GET config */   // used with axios for frontend form 
+router.get('/config', (req, res) => {
+  Config.find()
+  .then((config) => {
+     res.send(config)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+})
+
 /* SETTING page */
 router.get('/settings', (req, res) => {
   Config.find()
