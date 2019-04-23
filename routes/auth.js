@@ -97,7 +97,7 @@ router.use('/private', (req, res, next) => {
   }                            
 });                          
 router.get("/private", (req, res, next) => { 
-   Booking.find() 
+   Booking.find().sort({date: -1})
    .then((bookings) => {
     res.render("auth/private", { bookings: bookings } )
     console.log(bookings)

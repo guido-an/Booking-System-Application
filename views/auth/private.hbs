@@ -21,8 +21,10 @@
 
 
   <form action="/admin/filter-bookings" action="GET">
+
   
-  <p>Date filter: <input type="text" id="datepicker-admin" name="date" value={{filteredBookings.date}}></p>
+  
+  <p>Date filter: <input type="text" id="datepicker-admin" name="date"></p>
 
 
   Select time slot <select id="time-admin" name="time">
@@ -33,6 +35,9 @@
   <button type="submit">Filter</button>
   </form><br><br>
 
+<!-- filtered -->
+Reservation for <strong>{{date}} - </strong>
+at <strong>{{time}}</strong>
   {{#each filteredBookings}}
 
  <p>{{firstName}} {{lastName}} {{people}} people</p>

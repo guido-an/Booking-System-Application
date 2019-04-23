@@ -10,10 +10,16 @@ const Config = require("../models/Config");
 router.get('/filter-bookings', (req, res) => {
   Booking.find({ date: req.query.date, time: req.query.time })
   .then((filteredBookings) => {
-    res.render('auth/private', {filteredBookings:filteredBookings})
-    console.log(filteredBookings)
+    res.render('auth/private', {
+      filteredBookings:filteredBookings,
+      date: req.query.date,
+      time: req.query.time
+    })
   })
 })
+
+
+
 
 /* DELETE bookings */
 router.post('/:id/delete', (req, res) => {
@@ -38,6 +44,18 @@ router.get('/config', (req, res) => {
   })
 })
 
+
+/* POST CONFIG settings */ 
+router.post('/config', (req, res) => {
+  Config.updateOne(req.body) // update config document 
+  .then((config) => {
+    res.redirect('/admin/settings')
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+})
+
 /* SETTING page */
 router.get('/settings', (req, res) => {
   Config.find()
@@ -49,11 +67,6 @@ router.get('/settings', (req, res) => {
     console.log(err)
   })
 })
-
-
-
-
-/* UPDATE settings */ 
 
 
 

@@ -1,3 +1,9 @@
+
+let _1Slot
+let _2Slot
+let maxSeats
+
+
 function setMaxSeats() {
   axios
     .get("/admin/config") 
@@ -46,11 +52,6 @@ function set_2Slot() {
 
 
 
-
-let _1Slot
-let _2Slot
-let maxSeats
-
 // call this function on date selected (datepicker.js)
 function countSeats_1Slot() {
   // pick the datepicker input value
@@ -62,6 +63,7 @@ function countSeats_1Slot() {
       $("#first-slot-li p").html(maxSeats + " seats left"); // if no bookings, start displaying max seats
       bookings.data.forEach(booking => {    // if there are bookings
         // 1 SLOT CHECK //
+        console.log(bookings)
         if (booking.time == _1Slot) {
           _1SeatsBooked += booking.people; // count seats booked
           let _1SeatsLeft = maxSeats - _1SeatsBooked; // and seats left
