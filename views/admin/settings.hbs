@@ -2,7 +2,7 @@
 <a href="/auth/logout">Logout</a>
 <h1>Setting page</h1>
 
-
+<!-- BOOKINGS -->
 {{#each config}}
 <form action="/admin/config" method="POST">
 Max Seats available<input id="maxSeats" type="number" name="maxSeats" value={{maxSeats}} required>
@@ -14,8 +14,8 @@ Second time slot<input id="second-time-slot" type="number" name="_2Slot" value={
 
 
 
+<!-- UNAVAILABLE DATES -->
 <h3>Unavailable dates</h3>
-
 
 <ul id="unavailable-dates-container">
  
@@ -39,15 +39,6 @@ Second time slot<input id="second-time-slot" type="number" name="_2Slot" value={
 
 
 
-<ul>
-{{#each unavailableDates}}  <!-- from the /admin/settings route -->
-    <li>{{ this }}</li>
-  <form action="/admin/settings/{{this}}/delete" method="POST">
-  <button>Delete</button>
-    </form>
 
- 
-{{/each}}
-</ul>
 
  

@@ -5,8 +5,8 @@ const Booking = require("../models/Booking");
 const Config = require("../models/Config");
 
 
-
-/** FILTER bookings */
+/***************** ADMIN PAGE ******************/
+/** 1) FILTER bookings */
 router.get('/filter-bookings', (req, res) => {
   Booking.find({ date: req.query.date, time: req.query.time })
   .then((filteredBookings) => {
@@ -19,7 +19,7 @@ router.get('/filter-bookings', (req, res) => {
 })
 
 
-/* DELETE bookings */
+/* 2) DELETE bookings */
 router.post('/:id/delete', (req, res) => {
   Booking.findByIdAndRemove(req.params.id)
     .then(() => {
@@ -31,7 +31,7 @@ router.post('/:id/delete', (req, res) => {
     })
 });
 
-/* get CONFIG settings */   // used with axios for frontend form 
+/* 3) GET CONFIG settings */   // used with axios for setMaxSeats() in main.js 
 router.get('/config', (req, res) => {
   Config.find()
   .then((config) => {
@@ -42,7 +42,7 @@ router.get('/config', (req, res) => {
   })
 })
 
-/* post UPDATE CONFIG settings */ 
+/* 4) post UPDATE CONFIG settings */ 
 router.post('/config', (req, res) => {
   Config.updateOne(req.body) // update config document 
   .then((config) => {
@@ -53,7 +53,9 @@ router.post('/config', (req, res) => {
   })
 })
 
-/* SETTING page */
+
+/***************** SETTINGS PAGE ******************/
+/* 1) get setting page */
 router.get('/settings', (req, res) => {
   Config.find()
   .then((config) => {   
@@ -65,7 +67,7 @@ router.get('/settings', (req, res) => {
 })
 
 
-/** get UNAVAILBALE DATES*/
+/** 2) GET Unavailable Dates*/
 router.get('/settings/unavailable-dates', (req, res) => {
   Config.find({}, {unavailableDates: 1}) // filter only unavailable dates'projection'
   .then((config) => {
@@ -77,8 +79,7 @@ router.get('/settings/unavailable-dates', (req, res) => {
 })
 
 
-
-/*** ADD Unavailable Date */
+/*** 3) ADD Unavailable Date */
 router.post('/settings/unavailable-dates/edit', (req, res) => {
   let newUnavailableDate = req.body.newUnavailableDate
   Config.updateOne({ _id:"5cc08f8deb2af01add7693d9" }, { $push: { unavailableDates: newUnavailableDate } }, { new: true })
@@ -91,7 +92,7 @@ router.post('/settings/unavailable-dates/edit', (req, res) => {
 })
 
 
-/*** DELETE Unavailable Date*/
+/*** 4) DELETE Unavailable Date */
 router.post('/settings/unavailable-dates/delete', (req, res) => {
   let deleteUnavailableDate = req.body.deleteUnavailableDate
   Config.updateOne({ _id:"5cc08f8deb2af01add7693d9" }, { $pull: { unavailableDates: deleteUnavailableDate } }, { new: true })

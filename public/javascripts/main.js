@@ -1,15 +1,14 @@
-
+/************** ADMIN SETTINGS PAGE **************/
 let _1Slot
 let _2Slot
 let maxSeats
 
 
-function setMaxSeats() {
+function setMaxSeats() {  // 1 // 
   axios
     .get("/admin/config") 
     .then(config => {
       console.log(config)
-    //  console.log(config.data[0].maxSeats)
      maxSeats = config.data[0].maxSeats
      console.log(maxSeats)
     })
@@ -18,7 +17,7 @@ function setMaxSeats() {
     });
 }
 
-function set_1Slot() {
+function set_1Slot() {  // 2 // 
   axios
     .get("/admin/config") 
     .then(config => {
@@ -34,7 +33,7 @@ function set_1Slot() {
 }
 
 
-function set_2Slot() {
+function set_2Slot() {    // 3 // 
   axios
     .get("/admin/config") 
     .then(config => {
@@ -50,11 +49,10 @@ function set_2Slot() {
 }
 
 
-
-// call this function on date selected (datepicker.js)
-function countSeats_1Slot() {
-  // pick the datepicker input value
-  var date = $("#datepicker").val();
+/************** HOMEPAGE  **************/
+function countSeats_1Slot() {        // 1 //    
+  
+  var date = $("#datepicker").val();    // pick the datepicker input value
   axios
     .get("/get-list-of-bookings?date=" + date ) // and pass it to the axios route (the backend is querying for the date)
     .then(bookings => {
@@ -80,10 +78,9 @@ function countSeats_1Slot() {
     });
 }
 
+function countSeats_2Slot() {     // 2 //    
 
-function countSeats_2Slot() {
-  // pick the datepicker input value
-  var date = $("#datepicker").val();
+  var date = $("#datepicker").val();     // pick the datepicker input value
   axios
     .get("/get-list-of-bookings?date=" + date) // and pass it to the axios route (the backend is querying for the date)
     .then(bookings => {
