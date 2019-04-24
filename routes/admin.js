@@ -56,9 +56,8 @@ router.post('/config', (req, res) => {
 /* SETTING page */
 router.get('/settings', (req, res) => {
   Config.find()
-  .then((config) => {
-     console.log(config)
-     res.render('admin/settings', { config: config } )
+  .then((config) => {   
+     res.render('admin/settings', { config: config})
   })
   .catch((err) => {
     console.log(err)
@@ -78,9 +77,32 @@ router.get('/settings/unavailable-dates', (req, res) => {
 })
 
 
-router.post('/settings/update-unavailable-dates', (req, res) => {
-  // Config.updateOne()
+
+/*** ADD Unavailable Date */
+router.post('/settings/unavailable-dates/edit', (req, res) => {
+  let newUnavailableDate = req.body.newUnavailableDate
+  Config.updateOne({ _id:"5cc08f8deb2af01add7693d9" }, { $push: { unavailableDates: newUnavailableDate } }, { new: true })
+  .then(() => {
+      res.redirect('/admin/settings')
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 })
+
+
+/*** DELETE Unavailable Date*/
+router.post('/settings/unavailable-dates/delete', (req, res) => {
+  let deleteUnavailableDate = req.body.deleteUnavailableDate
+  Config.updateOne({ _id:"5cc08f8deb2af01add7693d9" }, { $pull: { unavailableDates: deleteUnavailableDate } }, { new: true })
+  .then(() => {
+    res.redirect('/admin/settings')
+})
+.catch((err) => {
+  console.log(err)
+})
+})
+
 
 
 module.exports = router;

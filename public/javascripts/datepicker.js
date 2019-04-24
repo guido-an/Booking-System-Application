@@ -18,10 +18,12 @@ $(function() {
     dateFormat: "dd MM yy",
     beforeShowDay: unavailable,
     yearRange: '2019:2019',
+    minDate: 0,  // start displaying dates from today
     onSelect:() => {
       setMaxSeats() 
       countSeats_1Slot()
       countSeats_2Slot()
+      
   },
     showAnim: "toggle"
   });
@@ -34,6 +36,7 @@ $(function() {
     dateFormat: "dd MM yy",
     beforeShowDay: unavailable,
     yearRange: '2019:2019',
+    minDate: 0,  // start displaying dates from today
     onSelect:() => {
       countSeats_1Slot()
       countSeats_2Slot()
@@ -48,12 +51,11 @@ function setUnavailableDates() {
   .then((config) => {
     unavailableDates = config.data
     $.each(unavailableDates, function (index, value) { // loop through the array 
-      $( "#unavailable-dates-container" ).append( "<li>" + value + "</li>"  ); // and display unavailable dates on page "admin/settings"
+      $( "#unavailable-dates-container" ).append( "<p>" + value + "</p>" + " "  ); // and display unavailable dates on page "admin/settings"
   });
   })
   .catch((err) => {
     console.log(err)
   })
 } 
-
 

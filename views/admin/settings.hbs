@@ -15,24 +15,39 @@ Second time slot<input id="second-time-slot" type="number" name="_2Slot" value={
 
 
 <h3>Unavailable dates</h3>
-<form>
-  Add unavailable date <input>
-</form>
+
+
 <ul id="unavailable-dates-container">
  
 </ul>
 
-{{!-- 
 
-<form action="/admin/settings/unavailable-dates">
 
-<button type="submit">Show unavailable dates</button>
+<form action="/admin/settings/unavailable-dates/edit" method="POST">
+<input type="text" name="newUnavailableDate" placeholder="day-month-year">
+<button>Add  dates</button>
 </form>
 
 
 
 
-{{#each dates}}
-  {{@index}}: {{this}}
-{{/each}} --}}
+<form action="/admin/settings/unavailable-dates/delete" method="POST">
+<input type="text" name="deleteUnavailableDate" placeholder="day-month-year">
+<button>Delete  dates</button>
+</form>
 
+
+
+
+<ul>
+{{#each unavailableDates}}  <!-- from the /admin/settings route -->
+    <li>{{ this }}</li>
+  <form action="/admin/settings/{{this}}/delete" method="POST">
+  <button>Delete</button>
+    </form>
+
+ 
+{{/each}}
+</ul>
+
+ 
