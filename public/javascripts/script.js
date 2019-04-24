@@ -1,6 +1,7 @@
 $( document ).ready(function() {
   set_1Slot()
   set_2Slot()
+  setUnavailableDates()
   console.log( "ready to rock!" );
 });
 

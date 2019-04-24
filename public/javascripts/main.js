@@ -12,7 +12,6 @@ function setMaxSeats() {
     //  console.log(config.data[0].maxSeats)
      maxSeats = config.data[0].maxSeats
      console.log(maxSeats)
-    
     })
     .catch(err => {
       console.log(err);
@@ -82,7 +81,6 @@ function countSeats_1Slot() {
 }
 
 
-
 function countSeats_2Slot() {
   // pick the datepicker input value
   var date = $("#datepicker").val();
@@ -109,8 +107,6 @@ function countSeats_2Slot() {
       console.log(err);
     });
 }
-
-
 
 
 $("#first-slot-li").click(() => {
@@ -145,16 +141,11 @@ function changeMaxPeopleInput() {
           min: 0
         });
         $('#people').val("")   // reset people input to prevent bigger number to be displayed and booked  
-        
-    
     })
     .catch(err => {
       console.log(err);
     });
 }
-
-
-
 
 $('#people').click(() => {
   changeMaxPeopleInput()

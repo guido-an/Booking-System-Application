@@ -1,4 +1,7 @@
+<a href="/auth/private">Admin page</a>
+<a href="/auth/logout">Logout</a>
 <h1>Setting page</h1>
+
 
 {{#each config}}
 <form action="/admin/config" method="POST">
@@ -8,3 +11,28 @@ Second time slot<input id="second-time-slot" type="number" name="_2Slot" value={
 <button>Update</button>
 </form>
 {{/each}}
+
+
+
+<h3>Unavailable dates</h3>
+<form>
+  Add unavailable date <input>
+</form>
+<ul id="unavailable-dates-container">
+ 
+</ul>
+
+{{!-- 
+
+<form action="/admin/settings/unavailable-dates">
+
+<button type="submit">Show unavailable dates</button>
+</form>
+
+
+
+
+{{#each dates}}
+  {{@index}}: {{this}}
+{{/each}} --}}
+

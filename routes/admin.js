@@ -19,8 +19,6 @@ router.get('/filter-bookings', (req, res) => {
 })
 
 
-
-
 /* DELETE bookings */
 router.post('/:id/delete', (req, res) => {
   Booking.findByIdAndRemove(req.params.id)
@@ -33,7 +31,7 @@ router.post('/:id/delete', (req, res) => {
     })
 });
 
-/* GET config */   // used with axios for frontend form 
+/* get CONFIG settings */   // used with axios for frontend form 
 router.get('/config', (req, res) => {
   Config.find()
   .then((config) => {
@@ -44,8 +42,7 @@ router.get('/config', (req, res) => {
   })
 })
 
-
-/* POST CONFIG settings */ 
+/* post UPDATE CONFIG settings */ 
 router.post('/config', (req, res) => {
   Config.updateOne(req.body) // update config document 
   .then((config) => {
@@ -69,38 +66,21 @@ router.get('/settings', (req, res) => {
 })
 
 
+/** get UNAVAILBALE DATES*/
+router.get('/settings/unavailable-dates', (req, res) => {
+  Config.find({}, {unavailableDates: 1}) // filter only unavailable dates'projection'
+  .then((config) => {
+     res.send(config[0].unavailableDates)  // send only unavailable dates and use Axios
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+})
 
 
-
-
-
-
-
-// router.get('/config', (req, res) => {
-//   Config.find()
-//   .then((config) => {
-//     console.log(config)
-//     res.render('admin/settings', { config: config } )
-    
-//   })
-//   .catch((err) => {
-//     console.log(err)
-//   })
-// })
-
-
-// router.post('/config', (req, res) => {
-//   Config.create(req.body)
-  
-//   .then(() => {
-//     let {
-//       maxSeats,
-//       _1Slot,
-//       _2Slot
-//     } = req.body
-//     res.redirect('/admin/settings')
-//   })
-// })
+router.post('/settings/update-unavailable-dates', (req, res) => {
+  // Config.updateOne()
+})
 
 
 module.exports = router;

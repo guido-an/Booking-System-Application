@@ -1,5 +1,8 @@
+
 /** Unavailable Dates **/
-let unavailableDates = ["9-4-2019"];
+// let unavailableDates = ["9-4-2019"];
+let unavailableDates
+
 
 function unavailable(date) {
   dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
@@ -38,3 +41,19 @@ $(function() {
     showAnim: "toggle"
   });
 });
+
+
+function setUnavailableDates() {
+  axios.get("/admin/settings/unavailable-dates")
+  .then((config) => {
+    unavailableDates = config.data
+    $.each(unavailableDates, function (index, value) { // loop through the array 
+      $( "#unavailable-dates-container" ).append( "<li>" + value + "</li>"  ); // and display unavailable dates on page "admin/settings"
+  });
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+} 
+
+
