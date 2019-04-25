@@ -4,6 +4,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const Booking = require("../models/Booking");
+const Config = require("../models/Config");
 
 
 
@@ -89,6 +90,24 @@ router.post('/login', (req, res) => {
 
 
 /** PROTECTED PAGE */
+// router.use('/private', (req, res, next) => {
+//   if (req.session.currentUser) { // <== if there's user in the session (user is logged in) go to the next step 
+//     next(); 
+//   } else {                      
+//     res.redirect("login");         
+//   }                            
+// });                          
+// router.get("/private", (req, res, next) => { 
+//    Booking.find().sort({date: -1})
+   
+//    .then((bookings) => {
+//     res.render("auth/private", { bookings: bookings } )
+//     console.log(bookings)
+//    })
+//   .catch((err) => {
+//     console.log(err)
+//   })
+// });     
 router.use('/private', (req, res, next) => {
   if (req.session.currentUser) { // <== if there's user in the session (user is logged in) go to the next step 
     next(); 
@@ -97,15 +116,21 @@ router.use('/private', (req, res, next) => {
   }                            
 });                          
 router.get("/private", (req, res, next) => { 
-   Booking.find().sort({date: -1})
-   .then((bookings) => {
-    res.render("auth/private", { bookings: bookings } )
-    console.log(bookings)
-   })
+
+  const config = Config.findOne()
+  const bookings = Booking.find().sort({date: -1}) 
+
+  Promise.all([bookings, config])
+    .then((values) => {
+      console.log(values)
+      // res.send(values[1]._1Slot)
+      res.render('auth/private', {values: values})
+    })
   .catch((err) => {
     console.log(err)
   })
-});     
+});  
+
 
 
 /**LOGOUT */

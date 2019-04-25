@@ -78,6 +78,11 @@ app.all('/admin/*', function(req, res, next) { // then you can use your middlewa
   }
 })
 
+hbs.registerHelper('incremented', function (index) { // to show the list of bookings in admin page with index starting from 1 
+  index++;
+  return index;
+});
+
 
 
 // default value for title local

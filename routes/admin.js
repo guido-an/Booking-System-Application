@@ -6,7 +6,7 @@ const Config = require("../models/Config");
 
 
 /***************** ADMIN PAGE ******************/
-/** 1) FILTER bookings */
+/** 1) FILTER DATE bookings */
 router.get('/filter-bookings', (req, res) => {
   Booking.find({ date: req.query.date, time: req.query.time })
   .then((filteredBookings) => {
@@ -17,6 +17,20 @@ router.get('/filter-bookings', (req, res) => {
     })
   })
 })
+
+
+/* 2) FILTER NAME bookings */
+router.get('/filter-bookings/name', (req, res) => {
+  Booking.find({ $or: [ { firstName: req.query.firstName}, { lastName: req.query.firstName } ] } )
+  .then((filteredBookingsPerName) => {
+    res.render('auth/private', {filteredBookingsPerName: filteredBookingsPerName})
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+})
+
+
 
 
 /* 2) DELETE bookings */
@@ -31,18 +45,42 @@ router.post('/:id/delete', (req, res) => {
     })
 });
 
-/* 3) GET CONFIG settings */   // used with axios for setMaxSeats() in main.js 
+/* 3) ADD bookings */
+router.post('/add-booking', (req, res) => {
+  Booking.create(req.body)
+  .then(() => {
+    res.redirect('/auth/private')
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+  
+})
+
+/* 4) EDIT bookings */
+router.post('/:id/edit', (req, res) => {
+  Booking.update( {_id: req.params.id }, req.body)
+  .then(() => {
+    res.redirect('/auth/private')
+  })
+  .catch(() => {
+    console.log(err)
+  })
+})
+
+/* 5) GET CONFIG settings */   // used with axios for setMaxSeats() in main.js 
 router.get('/config', (req, res) => {
   Config.find()
   .then((config) => {
      res.send(config)
+     console.log(config)
   })
   .catch((err) => {
     console.log(err)
   })
 })
 
-/* 4) post UPDATE CONFIG settings */ 
+/* 6) post UPDATE CONFIG settings */ 
 router.post('/config', (req, res) => {
   Config.updateOne(req.body) // update config document 
   .then((config) => {

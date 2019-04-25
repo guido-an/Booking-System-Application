@@ -79,7 +79,6 @@ function countSeats_1Slot() {        // 1 //
 }
 
 function countSeats_2Slot() {     // 2 //    
-
   var date = $("#datepicker").val();     // pick the datepicker input value
   axios
     .get("/get-list-of-bookings?date=" + date) // and pass it to the axios route (the backend is querying for the date)
@@ -106,19 +105,19 @@ function countSeats_2Slot() {     // 2 //
 }
 
 
-$("#first-slot-li").click(() => {
+$("#first-slot-li").click(() => {   // 3 // 
   $("#time-select span").html(_1Slot); // change span text 
   $("#time").attr("value", _1Slot); // change hidden input value (in order to be passed to the form)
 });
 
-$("#second-slot-li").click(() => {
+$("#second-slot-li").click(() => {   // 4 // 
   $("#time-select span").html(_2Slot); // change span text
   $("#time").attr("value", _2Slot); // change hidden input value (in order to be passed to the form)
 });
 
 
 
-function changeMaxPeopleInput() {
+function changeMaxPeopleInput() {   // 5 // 
   var date = $("#datepicker").val();
   var time = $("#time").val();
   var seatsBooked = 0
@@ -144,7 +143,7 @@ function changeMaxPeopleInput() {
     });
 }
 
-$('#people').click(() => {
+$('#people').click(() => {   // 6 // 
   changeMaxPeopleInput()
 })
 

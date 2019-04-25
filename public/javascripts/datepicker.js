@@ -1,8 +1,6 @@
 
 /** Unavailable Dates **/
-// let unavailableDates = ["9-4-2019"];
 let unavailableDates
-
 
 function unavailable(date) {
   dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
@@ -12,7 +10,7 @@ function unavailable(date) {
     return [false, "", "Unavailable"];
   }
 }
-/** FRONTEND */
+/****** FRONTEND ******/
 $(function() {
   $("#datepicker").datepicker({
     dateFormat: "dd MM yy",
@@ -30,9 +28,9 @@ $(function() {
 });
 
 
-/** ADMIN */
+/****** ADMIN ******/
 $(function() {
-  $("#datepicker-admin").datepicker({
+  $(".datepicker-admin").datepicker({
     dateFormat: "dd MM yy",
     beforeShowDay: unavailable,
     yearRange: '2019:2019',
@@ -44,6 +42,7 @@ $(function() {
     showAnim: "toggle"
   });
 });
+
 
 
 function setUnavailableDates() {

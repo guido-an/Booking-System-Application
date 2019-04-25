@@ -5,58 +5,102 @@
 <a href="/admin/settings">Settings</a>
 
 
-  
 
 
-{{!-- <h2>Last Booking</h2> 
-{{#each bookings}}
-    {{#if @first}}
-      <p>{{firstName}} {{lastName}}: {{date}} for {{people}} people</p>
-      <p>Email: {{email}} Phone: {{phone}}</p>
-    {{/if}}
-  {{/each}}
-<br> --}}
+
 <h2> BOOKINGS</h2>
 <a href="/auth/private">All bookings</a>
 
+ <!--************ FILTER per DATE************-->
+<form action="/admin/filter-bookings" action="GET">
 
-  <form action="/admin/filter-bookings" action="GET">
+  <p>Date filter: <input type="text" class="datepicker-admin" name="date" required></p>
 
-  
-  
-  <p>Date filter: <input type="text" id="datepicker-admin" name="date"></p>
-
-
-  Select time slot <select id="time-admin" name="time">
-    <option value="20.00">20.00</option>
-    <option value="22.00">22.00</option>
+  Select time slot <select name="time">
+    <option value="{{values.[1]._1Slot}}">{{values.[1]._1Slot}}</option>
+    <option value="{{values.[1]._2Slot}}">{{values.[1]._2Slot}}</option>
   </select>
 
   <button type="submit">Filter</button>
-  </form><br><br>
+</form><br><br>
 
-<!-- filtered -->
-Reservation for <strong>{{date}} - </strong>
-at <strong>{{time}}</strong>
-  {{#each filteredBookings}}
+<!-- Filtered Bookings per DATE new page --> 
+<strong>{{date}} </strong>
+<strong>{{time}}</strong>
+{{#each filteredBookings}}
 
- <p>{{firstName}} {{lastName}} {{people}} people</p>
- 
+<p>{{firstName}} {{lastName}} {{people}} people {{phone}} {{email}}</p>
+
 {{/each}}
 
 
-{{#each bookings}}
+<!-- Filtered Bookings per NAME new page --> 
+Search by name or last name <form action="/admin/filter-bookings/name" action="GET">
 
- <p>{{firstName}} {{lastName}} {{people}} people {{date}} {{time}}</p> 
+  <input type="text" name="firstName" placeholder="Search..">
+  <button type="submit">Filter</button>
+</form><br><br>
+{{#each filteredBookingsPerName}}
 
- <form action="/admin/{{id}}/delete" method="POST">
-    <button type="submit">Delete this booking</button>
+<p>{{firstName}} {{lastName}} {{people}} people {{phone}} {{email}}</p>
+
+{{/each}}
+
+
+
+
+ <!--************ ALL BOOKINGS ************-->
+{{#each values.[0]}} <!-- bookings -->
+
+{{incremented @index}}) <span>{{firstName}} {{lastName}} {{people}} people <strong>{{date}} </strong>{{time}} {{phone}} {{email}}</s>
+
+ <!--************ DELETE ************-->
+  <form action="/admin/{{id}}/delete" method="POST">
+    <button type="submit">delete booking</button>
   </form>
 
-{{/each}}
+
+
+ <!--************ EDIT ************-->
+  <form action="/admin/{{id}}/edit" method="POST">  
+    
+    <p>Datepciker: <input type="text" class="datepicker-admin" name="date" value="{{date}}"></p>  
+   
+    Time <input type="text" value="{{time}}" placeholder="{{time}}" name="time">
+
+    People <input type="number" name="people" placeholder="people" value="{{people}}">
+
+    First name: <input type="text" name="firstName" placeholder="First name" value="{{firstName}}">
+    Last name: <input type="text" name="lastName" placeholder="Last name" value="{{lastName}}">
+    Phone: <input type="tel" name="phone" placeholder="Phone" value="{{phone}}">
+    Email: <input type="email" name="email" placeholder="Email" value="{{email}}">
+    
+
+
+    <button type="submit">edit booking</button>
+  </form>
+  <br>
+  {{/each}}
 
 
 
+ <!--************ ADD ************-->
+  <h2>Just received a call?</h2> 
+  <p>Add the booking</p>
+  <form action="/admin/add-booking" method="POST">
 
+    <p>Datepciker: <input type="text" class="datepicker-admin" name="date"></p>
+    <!-- same #id 'datepicker' of frontend datepicker -->
+    What time? <select name="time">
+      <option value="{{values.[1]._1Slot}}">{{values.[1]._1Slot}}</option> <!-- values coming from the /auth/private route in auth.js -->
+      <option value="{{values.[1]._2Slot}}">{{values.[1]._2Slot}}</option>
+    </select>
+    People <input type="number" name="people" placeholder="people">
 
+    First name: <input type="text" name="firstName" placeholder="First name">
+    Last name: <input type="text" name="lastName" placeholder="Last name">
+    Phone: <input type="tel" name="phone" placeholder="Phone">
 
+    <button type="submit">Add booking</button>
+
+    <form>
