@@ -2,11 +2,11 @@
 
 <form id="book-form" action="/complete-booking">
 
-  <p>Datepciker: <input type="text" id="datepicker" name="date"></p>
+  <p>Datepciker: <input type="text" id="datepicker" name="date" required></p>
 
 
   <div id="time-select">
-    Time: <input type="hidden" id="time" name="time" value="">
+    Time: <input type="hidden" id="time" name="time" value="" required>
     <span></span>
     <ul class="display">
       <div id="first-slot-li">
@@ -22,9 +22,15 @@
   </div>
 
 
-  <p>People: <input type="number" id="people" name="people"></p>
+  <p>People: <input type="number" id="people" name="people" required></p>
 
 
   <button type="submit" id="proceed-button">Proceed</button>
 
   <form>
+
+    {{#if error}}
+     All fields must be filled
+    {{/if}}
+
+  

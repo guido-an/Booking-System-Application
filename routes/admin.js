@@ -32,8 +32,7 @@ router.get('/filter-bookings/name', (req, res) => {
 
 
 
-
-/* 2) DELETE bookings */
+/* 3) DELETE bookings */
 router.post('/:id/delete', (req, res) => {
   Booking.findByIdAndRemove(req.params.id)
     .then(() => {
@@ -45,7 +44,7 @@ router.post('/:id/delete', (req, res) => {
     })
 });
 
-/* 3) ADD bookings */
+/* 4) ADD bookings */
 router.post('/add-booking', (req, res) => {
   Booking.create(req.body)
   .then(() => {
@@ -57,9 +56,10 @@ router.post('/add-booking', (req, res) => {
   
 })
 
-/* 4) EDIT bookings */
+/* 5) EDIT bookings */
 router.post('/:id/edit', (req, res) => {
   Booking.update( {_id: req.params.id }, req.body)
+
   .then(() => {
     res.redirect('/auth/private')
   })
@@ -68,7 +68,7 @@ router.post('/:id/edit', (req, res) => {
   })
 })
 
-/* 5) GET CONFIG settings */   // used with axios for setMaxSeats() in main.js 
+/* 6) GET CONFIG settings */   // used with axios for setMaxSeats() in main.js 
 router.get('/config', (req, res) => {
   Config.find()
   .then((config) => {
@@ -80,7 +80,7 @@ router.get('/config', (req, res) => {
   })
 })
 
-/* 6) post UPDATE CONFIG settings */ 
+/* 7) post UPDATE CONFIG settings */ 
 router.post('/config', (req, res) => {
   Config.updateOne(req.body) // update config document 
   .then((config) => {

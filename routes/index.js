@@ -32,21 +32,32 @@ router.get("/list-of-bookings-per-date-and-time", (req, res) => {
 
 
 /* get COMPLETE BOOKING*/
+// router.get("/complete-booking", (req, res) => {
+//   let userBookingWhen = {
+//     // create an object with date, people and time properties
+//     date: req.query.date,
+//     people: req.query.people,
+//     time: req.query.time
+//   };
+//   res.render("complete-booking", userBookingWhen); // and pass the object to the page where the booking is finalized
+// });
 router.get("/complete-booking", (req, res) => {
-  let userBookingWhen = {
-    // create an object with date, people and time properties
-    date: req.query.date,
-    people: req.query.people,
-    time: req.query.time
-  };
-  res.render("complete-booking", userBookingWhen); // and pass the object to the page where the booking is finalized
+  if(req.query.date != "" && req.query.time != "" && req.query.people != "") {
+    let userBookingWhen = {
+      date: req.query.date,
+      people: req.query.people,
+      time: req.query.time
+    };
+    res.render("complete-booking", userBookingWhen); // and pass the object to complete-booking page
+  } else {
+    let error = {}
+    res.render('index', {error: error})
+  }
 });
 
-
 /* post COMPLETE BOOKING */
-router.post("/complete-booking", (req, res) => {
+router.post("/thankyou", (req, res) => {
   Booking.create(req.body); // create new booking
-
   let {
     date,
     people,
@@ -58,8 +69,6 @@ router.post("/complete-booking", (req, res) => {
     message
   } = req.body;
 
-
- 
   let transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
@@ -86,15 +95,26 @@ router.post("/complete-booking", (req, res) => {
     })
 
     .then(() => {
-      res.redirect("/");      // redirect to home page
+     
+      let succesfullMessage = {}
+      let { date, people, time, firstName, lastName, phone, email, message } = req.body;
+
+        res.render('thankyou', {
+          succesfullMessage: succesfullMessage,
+          date: date,
+          people: people,
+          time: time,
+          firstName: firstName,
+          lastName: lastName,
+          phone: phone,
+          email: email,
+          message: message
+        } );            
     })
     .catch(error => {
       console.log(error);
     });
 });
-
-
-
 
 
 module.exports = router;

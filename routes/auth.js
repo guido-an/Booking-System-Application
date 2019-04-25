@@ -122,8 +122,6 @@ router.get("/private", (req, res, next) => {
 
   Promise.all([bookings, config])
     .then((values) => {
-      console.log(values)
-      // res.send(values[1]._1Slot)
       res.render('auth/private', {values: values})
     })
   .catch((err) => {

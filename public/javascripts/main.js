@@ -147,6 +147,11 @@ $('#people').click(() => {   // 6 //
   changeMaxPeopleInput()
 })
 
+function resetFormOnLoad() {
+  $('#datepicker').val("")
+  $('#people').val("")
+  $('#time').val("")
+}
 
 
 

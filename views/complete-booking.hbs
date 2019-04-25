@@ -4,18 +4,23 @@
 
 
 
-<form action="/complete-booking" method="POST">
+<form action="/thankyou" method="POST">
 <div style="display: none">  
   <input type="text" name="date" value="{{date}}" readonly>
   <input type="number" name="people" value="{{people}}" readonly>
   <input type="text" name="time" value="{{time}}" readonly>
 </div>
-  First name: <input type="text" name="firstName" placeholder="First name">
-  Last name: <input type="text" name="lastName" placeholder="Last name">
-  Phone: <input type="tel" name="phone" placeholder="Phone">
-  Email: <input type="email" name="email" placeholder="Email">
+  First name: <input type="text" name="firstName" placeholder="First name" required>
+  Last name: <input type="text" name="lastName" placeholder="Last name" required>
+  Phone: <input type="tel" name="phone" placeholder="Phone" required>
+  Email: <input type="email" name="email" placeholder="Email" required>
   <textarea type="text" name="message" id="message"
     placeholder="Do you have any allergy or dietary requirements?"></textarea>
 
   <button type="submit">Book</button>
 </form>
+
+ {{#if errorMessage}}
+    {{errorMessage}}
+    {{/if}}
+
