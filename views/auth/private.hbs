@@ -59,10 +59,10 @@ Search by name or last name <form action="/admin/filter-bookings/name" action="G
     <button type="submit">delete booking</button>
   </form>
 
-
-
  <!--************ EDIT ************-->
   <form action="/admin/{{id}}/edit" method="POST">  
+
+    
     
     <p>Datepciker: <input type="text" class="datepicker-admin" name="date" value="{{date}}"></p>  
    
@@ -74,9 +74,9 @@ Search by name or last name <form action="/admin/filter-bookings/name" action="G
     Last name: <input type="text" name="lastName" placeholder="Last name" value="{{lastName}}">
     Phone: <input type="tel" name="phone" placeholder="Phone" value="{{phone}}">
     Email: <input type="email" name="email" placeholder="Email" value="{{email}}">
+
+
     
-
-
     <button type="submit">edit booking</button>
   </form>
   <br>

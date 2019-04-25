@@ -46,7 +46,7 @@ $(function() {
 
 
 function setUnavailableDates() {
-  axios.get("/admin/settings/unavailable-dates")
+  axios.get("/unavailable-dates")
   .then((config) => {
     unavailableDates = config.data
     $.each(unavailableDates, function (index, value) { // loop through the array 

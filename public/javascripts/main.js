@@ -6,7 +6,7 @@ let maxSeats
 
 function setMaxSeats() {  // 1 // 
   axios
-    .get("/admin/config") 
+    .get("/config-document") 
     .then(config => {
       console.log(config)
      maxSeats = config.data[0].maxSeats
@@ -19,7 +19,7 @@ function setMaxSeats() {  // 1 //
 
 function set_1Slot() {  // 2 // 
   axios
-    .get("/admin/config") 
+    .get("/config-document") 
     .then(config => {
       console.log(config.data[0]._1Slot)
     
@@ -35,7 +35,7 @@ function set_1Slot() {  // 2 //
 
 function set_2Slot() {    // 3 // 
   axios
-    .get("/admin/config") 
+    .get("/config-document") 
     .then(config => {
       console.log(config.data[0]._2Slot)
     
@@ -152,6 +152,8 @@ function resetFormOnLoad() {
   $('#people').val("")
   $('#time').val("")
 }
+
+
 
 
 

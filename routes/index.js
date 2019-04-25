@@ -32,15 +32,6 @@ router.get("/list-of-bookings-per-date-and-time", (req, res) => {
 
 
 /* get COMPLETE BOOKING*/
-// router.get("/complete-booking", (req, res) => {
-//   let userBookingWhen = {
-//     // create an object with date, people and time properties
-//     date: req.query.date,
-//     people: req.query.people,
-//     time: req.query.time
-//   };
-//   res.render("complete-booking", userBookingWhen); // and pass the object to the page where the booking is finalized
-// });
 router.get("/complete-booking", (req, res) => {
   if(req.query.date != "" && req.query.time != "" && req.query.people != "") {
     let userBookingWhen = {
@@ -55,7 +46,7 @@ router.get("/complete-booking", (req, res) => {
   }
 });
 
-/* post COMPLETE BOOKING */
+/********** post COMPLETE BOOKING ***********/
 router.post("/thankyou", (req, res) => {
   Booking.create(req.body); // create new booking
   let {
@@ -73,7 +64,7 @@ router.post("/thankyou", (req, res) => {
     service: "Gmail",
     auth: {
       user: "carucciguido@gmail.com",
-      pass: "Josejose2"
+      pass: process.env.passwordEmail
     }
   });
   transporter.sendMail({
@@ -116,5 +107,28 @@ router.post("/thankyou", (req, res) => {
     });
 });
 
+
+/********** get CONFIG DOCUMENT ***********/
+router.get('/config-document', (req, res) => {
+  Config.find()
+  .then((config) => {
+     res.send(config)
+     console.log(config)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+})
+
+/********* UNAVAILABLE DATES *******/
+router.get('/unavailable-dates', (req, res) => {
+  Config.find({}, {unavailableDates: 1}) // filter only unavailable dates'projection'
+  .then((config) => {
+     res.send(config[0].unavailableDates)  // send only unavailable dates and use Axios
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+})
 
 module.exports = router;

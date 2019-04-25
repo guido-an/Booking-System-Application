@@ -12,6 +12,9 @@ $( "#time-select" ).click(() => {
 });
 
 
+$('#test').click(() => {
+  alert($(this).attr("href"))
+})
 
 
 
