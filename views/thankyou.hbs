@@ -1,11 +1,13 @@
-  
-  <h1>Thank you for your booking</h1>
+  <section class="container text-center" style="margin-top: 120px">
+
+ 
+  <h2>Thank you for your booking!</h2>
   {{#if succesfullMessage}}
-    You have succesfull completed the booking. See you soon ... and come hungry :)
+    <p>You have succesfull completed the booking and received a confirmation email.<br> See you soon ... and come hungry :)</p>
   {{/if}}
 
 
-<h2>Booking review</h2>
+{{!-- <h2>Booking review</h2>
 {{date}}
 {{time}}
 {{people}}
@@ -13,6 +15,7 @@
 {{lastName}}
 {{phone}}
 {{email}}
-{{message}}
+{{message}} --}}
 
-<a href="/">Home</a>
+<a style="display:block; margin-top: 40px"href="/auth/private">Check Admin Demo</a> 
+</section>

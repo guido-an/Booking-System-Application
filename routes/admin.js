@@ -6,15 +6,18 @@ const Config = require("../models/Config");
 
 
 /***************** ADMIN PAGE ******************/
-/** 1) FILTER DATE bookings */
+
 router.get('/filter-bookings', (req, res) => {
   Booking.find({ date: req.query.date, time: req.query.time })
   .then((filteredBookings) => {
-    res.render('auth/private', {
-      filteredBookings:filteredBookings,
+    res.render('admin/filtered-bookings', {
+      filteredBookings: filteredBookings,
       date: req.query.date,
       time: req.query.time
-    })
+     })
+  })
+  .catch((err) => {
+    console.log(err)
   })
 })
 
@@ -56,7 +59,18 @@ router.post('/add-booking', (req, res) => {
   
 })
 
-/* 5) EDIT bookings */
+/* 5) GET EDIT bookings */
+router.get('/:id/edit', (req, res) => {
+  Booking.findById(req.params.id)
+  .then(thisBooking => {
+    res.render('admin/edit', { thisBooking: thisBooking } );
+  })
+  .catch(error => {
+    console.log('Error while retrieving celebrity details: ', error);
+  })
+})
+
+/* 6) POST EDIT bookings */
 router.post('/:id/edit', (req, res) => {
   Booking.update( {_id: req.params.id }, req.body)
 
@@ -68,7 +82,8 @@ router.post('/:id/edit', (req, res) => {
   })
 })
 
-/* 6) GET CONFIG settings */   // used with axios for setMaxSeats() in main.js 
+
+/* 7) GET CONFIG settings */   // used with axios for setMaxSeats() in main.js 
 router.get('/config', (req, res) => {
   Config.find()
   .then((config) => {

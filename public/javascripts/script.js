@@ -18,5 +18,18 @@ $('#test').click(() => {
 
 
 
+/** Booking form styling HOME **/
+
+$("#cta-hero") 
+    .hover(() => { // trigger the mouseover event
+        $("#booking-section form") 
+            .css("transform", "scale(1.1)"); 
+    }, () => { // trigger the mouseout event
+        $("#booking-section form") 
+            .css("transform", "scale(1"); 
+    });
+
+
+
 
 

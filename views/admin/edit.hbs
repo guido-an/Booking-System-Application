@@ -1,0 +1,20 @@
+<section id="edit-section" class="container">
+   <h2 class="text-center">Edit this booking</h2>
+   <p class="text-center">Do you want to make a change to this booking?<br> You are in the right place :)</p>
+  <div id="edit-form-wrapper">
+  
+  
+  <form action="/admin/{{thisBooking.id}}/edit" method="POST">  
+     <p>Date</p><input type="text" name="date" value="{{thisBooking.date}}">
+     <p>Time slot</p><input type="text" name="time" value="{{thisBooking.time}}">
+       <p>Name</p> <input type="text" name="firstName" value="{{thisBooking.firstName}}">
+        <p>Last name</p>  <input type="text" name="lastName" value="{{thisBooking.lastName}}">
+        <p>People</p> <input type="number" name="people" value="{{thisBooking.people}}">
+         <p>Phone</p> <input type="tel" name="phone" value="{{thisBooking.phone}}">
+         
+ 
+      <button class="btn btn-primary">Edit</button>
+
+  </form>
+  </div>
+</section>

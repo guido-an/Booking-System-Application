@@ -7,10 +7,14 @@ const nodemailer = require("nodemailer");
 
 var flash = require('connect-flash');
 
-
 /* get HOME */
 router.get("/", (req, res, next) => {
   res.render("index");
+});
+
+/* get DEMO */
+router.get("/preview", (req, res, next) => {
+  res.render("preview");
 });
 
 /* get list of BOOKINGS per DATE API */

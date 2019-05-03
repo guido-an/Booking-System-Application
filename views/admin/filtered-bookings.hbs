@@ -1,0 +1,36 @@
+
+<!-- Filtered Bookings per DATE new page -->
+  <section id="filtered-bookings-section" class="container">
+    <h2>Filtered bookings</h2>
+   <strong>Date: </strong>{{date}}<br> <strong>Time: </strong>{{time}}
+
+    <table>
+    <thead>
+      <th>Name</th>
+      <th>When</th>
+      <th>Phone</th>
+      <th>People</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      {{#each filteredBookings}}
+      <tr>
+        <td>{{firstName}} {{lastName}} </td>
+         <td>{{date}} | {{time}}</td>
+        <td>{{phone}} {{email}}</td>
+        <td>{{people}}</td>
+        <td>
+          <!--************ DELETE ************-->
+          <form action="/admin/{{id}}/delete" method="POST">
+            <button class="btn btn-danger" type="submit">Delete</button>
+          </form>
+          <!--************ EDIT ************-->
+            <a class="btn btn-primary" href="/admin/{{id}}/edit">Edit</a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+         <p><a href="/auth/private">View all bookings</a></p>
+  </section>
+

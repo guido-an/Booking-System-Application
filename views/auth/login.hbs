@@ -1,16 +1,16 @@
-<form action="/auth/login" method="POST" id="form">
-  <h2>Login</h2>
+<section class="container text-center" id="login-container">
+     <h2>Admin Login</h2>
+    <p>Username: admin</p>
+    <p>Password: admin</p>
+  <form class="container text-center" action="/auth/login" method="POST" id="form">
+    <input placeholder="Username" type="text" name="username">
+    <input placeholder="Password" type="password" name="password">
 
-  <label for="username">Username</label>
-  <input type="text" name="username">
-
-  <label for="password">Password</label>
-  <input type="password" name="password">
-
-  {{#if errorMessage }}
+    {{#if errorMessage }}
     <div class="error-message">{{ errorMessage }}</div>
-  {{/if}}
+    {{/if}}
 
-  <button type="submit">Sign in</button>
+    <button class="btn btn-success" type="submit">Sign in</button>
 
-</form>
+  </form>
+</section>

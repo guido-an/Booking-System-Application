@@ -1,45 +1,49 @@
-<a href="/auth/private">Admin page</a>
-<a href="/auth/logout">Logout</a>
-<h1>Setting page</h1>
 
-<!-- BOOKINGS -->
-{{#each config}}
-<form action="/admin/config" method="POST">
-Max Seats available<input id="maxSeats" type="number" name="maxSeats" value={{maxSeats}} required>
-First time slot<input id="first-time-slot" type="number" name="_1Slot" value={{_1Slot}} required>
-Second time slot<input id="second-time-slot" type="number" name="_2Slot" value={{_2Slot}} required>
-<button>Update</button>
-</form>
-{{/each}}
+ <div class="btn-container text-right">
+    <a href="/auth/private">Bookings page</a>
+    <a class="logout-button" href="/auth/logout">Logout</a>
+  </div>
+
+<section id="settings-container" class="container">
 
 
+  <div class="row">
+    <div class="col-sm-6">
+       <!-- SETTINGS -->
+  {{#each config}}
+  <form action="/admin/config" method="POST">
+    <h2>General Settings:</h2>
+    <p style="width: 70%">Here you can define the seats available on each date and the time slots of your restaurant. </p>
+    <span><strong>Max Seats Available</strong></span><input id="maxSeats" type="number" name="maxSeats" value={{maxSeats}}
+      required>
+    <span><strong>1st Time Slot</strong></span><input id="first-time-slot" type="number" name="_1Slot" value={{_1Slot}}
+      required>
+    <span><strong>2nd Time Slot</strong></span><input id="second-time-slot" type="number" name="_2Slot" value={{_2Slot}}
+      required>
+    <button class="btn btn-primary">Update</button>
+  </form>
+  {{/each}}
+    </div>
+    <div id="unavailable-dates-section"class="col-sm-6">
+      <!-- UNAVAILABLE DATES -->
+      <h2>Unavailable dates</h2>
+      <p style="margin-bottom: 40px">Your restaurant is going to be close on any date?<br> Simply add it here.</p>
 
-<!-- UNAVAILABLE DATES -->
-<h3>Unavailable dates</h3>
+      <ul id="unavailable-dates-container">
 
-<ul id="unavailable-dates-container">
- 
-</ul>
+      </ul>
 
-
-
-<form action="/admin/settings/unavailable-dates/edit" method="POST">
-<input type="text" name="newUnavailableDate" placeholder="day-month-year">
-<button>Add  dates</button>
-</form>
+      <form action="/admin/settings/unavailable-dates/edit" method="POST">
+        <input type="text" name="newUnavailableDate" placeholder="day-month-year">
+        <button class="btn btn-success">Add dates</button>
+      </form>
 
 
+      <form action="/admin/settings/unavailable-dates/delete" method="POST">
+        <input type="text" name="deleteUnavailableDate" placeholder="day-month-year">
+        <button class="btn btn-danger">Delete dates</button>
+      </form>
+    </div>
+  </div>
+</section>
 
-
-<form action="/admin/settings/unavailable-dates/delete" method="POST">
-<input type="text" name="deleteUnavailableDate" placeholder="day-month-year">
-<button>Delete  dates</button>
-</form>
-
-
-
-
-
-
-
- 

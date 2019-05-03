@@ -1,36 +1,78 @@
-<h1>BookYourTable</h1>
-
-<form id="book-form" action="/complete-booking">
-
-  <p>Datepciker: <input type="text" id="datepicker" name="date" required></p>
+<section id="home-section" class="container-fluid">
 
 
-  <div id="time-select">
-    Time: <input type="hidden" id="time" name="time" value="" required>
-    <span></span>
-    <ul class="display">
-      <div id="first-slot-li">
-        <span></span>
-        <p></p>
+  <div class="row">
+    <div class="col-lg-6"> <!-- left side -->
+      <div class="menu">
+        <div class="logo">
+          <h3>LOGO</h3>
+        </div>
+        <div>
+          <ul>
+            <a href="#"><li>Home</li></a>
+            <a href="#"><li>About Us</li></a>
+            <a href="#"><li>Our Menu</li></a>
+            <a href="#"><li>Contact Us</li></a>
+          </ul>
+        </div>
       </div>
-      <div id="second-slot-li">
-        <span></span>
-        <p></p>
+      <div id="hero-heading-wrapper">
+                <img src="images/food-icons.png" width="200px">
+        <h1>BEST <span>Food</span> IN TOWN</h1>
+        <p id="hero-subtitle">Lorem ipsum sin amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+         <a href="#"> <p id="cta-hero">> Book Your Table Now</p></a>
+     
+   
+      </div>
+    </div>
+
+    <div class="col-lg-6" id="booking-section">  <!-- right side -->
+      <form action="/complete-booking">
+
+      
+           <div id="datepicker-wrapper" class="input-wrapper">  <!-- date -->
+               <div> <i class="fa fa-calendar"></i></div>
+               <div>
+               <input autocomplete="off" type="text" id="datepicker" name="date" placeholder="Select date" required>
+               </div>
+           </div>
+           
+
+   <div class="input-wrapper">  <!-- time -->
+     <div>
+       <i class="fa fa-clock"></i>
+     </div>
+        <div id="time-select">
+           </i> <h5>Select Time<input type="hidden" id="time" name="time" value="" required></h5>
+          <span></span>
+          <ul class="display">
+            <div id="first-slot-li">
+              <strong><span></span></strong> <!-- time slot -->
+              <p></p>   <!-- sets left -->
+            </div>
+            <div id="second-slot-li">
+             <strong><span></span></strong> <!-- time slot -->
+              <p></p>     <!-- sets left -->
+            </div>
+          </ul>
+         </div>
       </div>
 
-    </ul>
+     <div class="input-wrapper">    <!-- people -->
+         <i class="fa fa-users"></i> 
+        <input type="number" id="people" name="people" placeholder="People" required>
+     </div>
+
+        <div class="submit-button-wrapper">  <!-- button -->
+          <button type="submit" class="submit-button">Proceed</button>
+        </div>
+        <form>
+        
+          {{#if error}}
+          All fields must be filled
+          {{/if}}
+
+    </div>
   </div>
-
-
-  <p>People: <input type="number" id="people" name="people" required></p>
-
-
-  <button type="submit" id="proceed-button">Proceed</button>
-
-  <form>
-
-    {{#if error}}
-     All fields must be filled
-    {{/if}}
-
-  
+</section>

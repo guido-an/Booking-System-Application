@@ -68,7 +68,7 @@ function countSeats_1Slot() {        // 1 //
           if (_1SeatsLeft > 0) {
             $("#first-slot-li p").html(_1SeatsLeft + " seats left");
           } else {
-            $("#first-slot-li p").html("Fully Booked "); // or fully booked
+            $("#first-slot-li p").html("Sorry, fully booked "); // or fully booked
           }
         }
       });
@@ -94,7 +94,7 @@ function countSeats_2Slot() {     // 2 //
           if (_2SeatsLeft > 0) {
             $("#second-slot-li p").html(_2SeatsLeft + " seats left");
           } else {
-            $("#second-slot-li p").html("Fully Booked "); // or fully booked
+            $("#second-slot-li p").html("Sorry, fully booked "); // or fully booked
           }
         }
       });

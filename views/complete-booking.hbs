@@ -1,19 +1,19 @@
-<h3>Date: {{date}}</h3>
-<h3>People: {{people}}</h3>
-<h3>Time: {{time}}</h3>
-
-
-
+{{!-- <section class="container" id="complete-booking">
+<h2>Table reserved for:</h2>
+<p><strong>Day: </strong>{{date}}</p>
+<p><strong>Time slot: </strong>{{time}}</p>
+<p><strong>People: </strong> {{people}}</p>
+<h3>Complete booking:</h3>
 <form action="/thankyou" method="POST">
 <div style="display: none">  
   <input type="text" name="date" value="{{date}}" readonly>
   <input type="number" name="people" value="{{people}}" readonly>
   <input type="text" name="time" value="{{time}}" readonly>
 </div>
-  First name: <input type="text" name="firstName" placeholder="First name" required>
-  Last name: <input type="text" name="lastName" placeholder="Last name" required>
-  Phone: <input type="tel" name="phone" placeholder="Phone" required>
-  Email: <input type="email" name="email" placeholder="Email" required>
+<input type="text" name="firstName" placeholder="First name" required>
+  <input type="text" name="lastName" placeholder="Last name" required>
+  <input type="tel" name="phone" placeholder="Phone" required>
+  <input type="email" name="email" placeholder="Email" required>
   <textarea type="text" name="message" id="message"
     placeholder="Do you have any allergy or dietary requirements?"></textarea>
 
@@ -24,3 +24,57 @@
     {{errorMessage}}
     {{/if}}
 
+</section>
+
+ --}}
+<section id="home-section" class="container-fluid">
+
+
+  <div class="row">
+    <div class="col-lg-6"> <!-- left side -->
+      <div class="menu">
+        <div class="logo">
+          <h3>LOGO</h3>
+        </div>
+        <div>
+          <ul>
+            <a href="#"><li>Home</li></a>
+            <a href="#"><li>About Us</li></a>
+            <a href="#"><li>Our Menu</li></a>
+            <a href="#"><li>Contact Us</li></a>
+          </ul>
+        </div>
+      </div>
+      <div id="hero-heading-wrapper">
+                <img src="images/food-icons.png" width="200px">
+        <h1>BEST <span>Food</span> IN TOWN</h1>
+        <p id="hero-subtitle">Lorem ipsum sin amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+         <a href="#"> <p id="cta-hero">> Book Your Table Now</p></a>
+     
+   
+      </div>
+    </div>
+
+    <div class="col-lg-6" id="complete-booking">  <!-- right side -->
+       <h2>Table reserved for:</h2>
+           <p><strong>Day: </strong>{{date}}</p>
+           <p><strong>Time slot: </strong>{{time}}</p>
+           <p><strong>People: </strong> {{people}}</p>
+       <h3>Complete booking:</h3>
+         <form action="/thankyou" method="POST">
+          <div style="display: none">  
+          <input type="text" name="date" value="{{date}}" readonly>
+          <input type="number" name="people" value="{{people}}" readonly>
+          <input type="text" name="time" value="{{time}}" readonly>
+          </div>
+          <input type="text" name="firstName" placeholder="First name" required>
+          <input type="text" name="lastName" placeholder="Last name" required>
+          <input type="tel" name="phone" placeholder="Phone" required>
+          <input type="email" name="email" placeholder="Email" required>
+        
+          <button class="complete-booking-button" type="submit">Complete Booking</button>
+      </form>
+    </div>
+  </div>
+</section>
