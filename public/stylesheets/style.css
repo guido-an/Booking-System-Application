@@ -12,7 +12,8 @@ h1 {
   font-weight: 300;
   font-size: 48px; }
 
-h2, h3 {
+h2,
+h3 {
   font-weight: 700 !important; }
 
 a {
@@ -305,6 +306,7 @@ input[type="number"]::-webkit-outer-spin-button {
   #complete-booking {
     margin-top: 120px; } }
 
+/****** BACKEND START ********/
 /*** LOGIN ***/
 #login-container {
   margin-top: 120px; }
@@ -357,8 +359,10 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 15px;
   display: block; }
 
-#bookings-section td, th,
-#filtered-bookings-section td, th {
+#bookings-section td,
+th,
+#filtered-bookings-section td,
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px !important;

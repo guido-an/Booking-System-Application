@@ -62,7 +62,7 @@
   <p>Did you just receive a call and want to add a booking? Here you go.</p>
   <form action="/admin/add-booking" method="POST">
 
-    <input placeholder="Select date" type="text" class="datepicker-admin" name="date">
+    <input autocomplete="off" placeholder="Select date" type="text" class="datepicker-admin" name="date">
     <!-- same #id 'datepicker' of frontend datepicker -->
     <select name="time">
       <option value="{{values.[1]._1Slot}}">{{values.[1]._1Slot}}</option>
