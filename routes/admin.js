@@ -135,7 +135,7 @@ router.get('/settings/unavailable-dates', (req, res) => {
 /*** 3) ADD Unavailable Date */
 router.post('/settings/unavailable-dates/edit', (req, res) => {
   let newUnavailableDate = req.body.newUnavailableDate
-  Config.updateOne({ _id:"5cc08f8deb2af01add7693d9" }, { $push: { unavailableDates: newUnavailableDate } }, { new: true })
+  Config.updateOne({ _id:"5ccd6fc3e60a7a1740edc044" }, { $push: { unavailableDates: newUnavailableDate } }, { new: true })
   .then(() => {
       res.redirect('/admin/settings')
   })
@@ -148,7 +148,7 @@ router.post('/settings/unavailable-dates/edit', (req, res) => {
 /*** 4) DELETE Unavailable Date */
 router.post('/settings/unavailable-dates/delete', (req, res) => {
   let deleteUnavailableDate = req.body.deleteUnavailableDate
-  Config.updateOne({ _id:"5cc08f8deb2af01add7693d9" }, { $pull: { unavailableDates: deleteUnavailableDate } }, { new: true })
+  Config.updateOne({ _id:"5ccd6fc3e60a7a1740edc044" }, { $pull: { unavailableDates: deleteUnavailableDate } }, { new: true })
   .then(() => {
     res.redirect('/admin/settings')
 })
