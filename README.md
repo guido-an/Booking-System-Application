@@ -18,7 +18,7 @@ MONGODB_URI=[mongoDB connection]
   Backend: in the private area the administrator can manage all the bookings. Editing, deleting and adding them. In the setting page he can define the settings according to which the system is going to work. 
  </li>
  </ul>
-
+<br>
  
  
 
