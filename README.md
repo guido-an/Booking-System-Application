@@ -13,7 +13,7 @@ MONGODB_URI=[mongoDB connection]
 <strong>Functionalities</strong><br>
 <ul>
  <li> Frontend: the user experience wants to be as easy and intuitive as possible. The user can select date, time slot and for how many people he wants to reserve. Then, if there are still seats available, he can simply type his personal data and the booking is done. Both the admin and the user receive a confirmation email.
- </li>
+ </li><br>
  <li>
   Backend: in the private area the administrator can manage all the bookings. Editing, deleting and adding them. In the setting page he can define the settings according to which the system is going to work. 
  </li>
@@ -26,4 +26,7 @@ MONGODB_URI=[mongoDB connection]
 
 
 
-Live Demo: https://bookingsystem-ironhack.herokuapp.com/preview
+Live Demo: https://bookingsystem-ironhack.herokuapp.com/preview *
+
+* website developed on MacBook Air, currently working on the responsiveness
+
