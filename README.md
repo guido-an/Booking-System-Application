@@ -1,4 +1,4 @@
-# Booking System
+# Booking System 1.0 
 
 A booking reservations system for restaurants:
 
@@ -28,5 +28,5 @@ MONGODB_URI=[mongoDB connection]
 
 Live Demo: https://bookingsystem-ironhack.herokuapp.com/preview *
 
-* website developed on MacBook Air, currently working on the responsiveness
+* desktop version
 
