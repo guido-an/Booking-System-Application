@@ -1,4 +1,4 @@
-# Book-Your-Table
+# Booking System
 
 A booking reservations system for restaurants:
 
