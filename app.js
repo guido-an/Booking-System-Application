@@ -87,7 +87,7 @@ hbs.registerHelper('incremented', function (index) { // to show the list of book
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Booking System - Boost Your Reservations';
 
 
 const index = require('./routes/index');

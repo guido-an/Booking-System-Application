@@ -63,7 +63,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #preview-wrapper {
   background-color: white;
-  width: 70%;
   box-shadow: 13px 32px 36px -14px rgba(0, 0, 0, 0.4);
   border-radius: 8px;
   position: relative;
@@ -127,18 +126,25 @@ input[type="number"]::-webkit-outer-spin-button {
   right: 200px; }
 
 #contact-button {
-  position: absolute;
-  top: 20px;
-  right: 15px;
-  background-color: #fff;
-  color: #000;
-  font-weight: 500;
-  padding: 10px;
-  border-radius: 45px; }
+  display: none; }
 
 #contact-button:hover {
   background-color: #2ee59d;
   color: white; }
+
+@media only screen and (min-width: 1200px) {
+  #preview-wrapper {
+    width: 70%; }
+  #contact-button {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    background-color: #fff;
+    color: #000;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 45px;
+    display: block; } }
 
 /*** HOME ***/
 #hero-heading-wrapper {
@@ -252,13 +258,14 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 30px;
   float: right; }
 
+/** mobile **/
 @media only screen and (max-width: 1200px) {
   .menu ul li {
     display: none; }
   #booking-section {
     margin-top: 80px; }
   #booking-section form {
-    margin-top: 120px; }
+    margin: 80px 0; }
   .input-wrapper {
     margin: 20px; } }
 
