@@ -5,9 +5,9 @@ A booking reservations system for restaurants:
 .env file
 
 PORT=3000<br>
-ENV=DEVELOPMENT
-SESSIONSECRET=[secret]
-GMAIL_PASS=[gmail pass]
+ENV=DEVELOPMENT<br>
+SESSIONSECRET=[secret]<br>
+GMAIL_PASS=[gmail pass]<br>
 MONGODB_URI=[mongoDB connection]
 
 
