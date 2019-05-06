@@ -4,7 +4,7 @@ A booking reservations system for restaurants:
 
 .env file
 
-PORT=3000
+PORT=3000<br>
 ENV=DEVELOPMENT
 SESSIONSECRET=[secret]
 GMAIL_PASS=[gmail pass]
